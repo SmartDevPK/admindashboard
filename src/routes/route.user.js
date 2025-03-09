@@ -1,5 +1,5 @@
 import express from 'express';
-import { renderHomePage, handleSignup } from '../controllers/controllers.user.js';
+import { renderHomePage, handleSignup, loginPage, loginUser } from '../controllers/controllers.user.js';
 
 const router = express.Router();
 
@@ -7,6 +7,9 @@ const router = express.Router();
 router.get("/", renderHomePage); 
 
 router.post("/signup", handleSignup)
+
+router.get("/login", loginPage)
+router.post("/login", loginUser);
 
 
 
