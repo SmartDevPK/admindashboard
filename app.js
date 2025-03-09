@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import bodyParser from "body-parser";
+import connectDB from "./src/db/db.user.js";
 
 
 const app = express ();
@@ -14,10 +15,11 @@ dotenv.config();
 app.use(bodyParser.json())
 
 
-const port = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.set("views", "src/views");
+
+app.use(express.static("public"));
 
 app.get('/admin', (req, res) => {
     res.render('admin', { title: 'Admin', message: 'Welcome to the Admin Page!' });
@@ -28,6 +30,17 @@ app.get('/', (req, res) => {
   });
 
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-})
+  (async () => {
+    try {
+      await connectDB();
+      console.log("MongoDB connection successful");
+  
+      const PORT = process.env.PORT || 3000;
+      app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+      });
+    } catch (err) {
+      console.error("MongoDB connection error:", err.message);
+    }
+  })();
+  
