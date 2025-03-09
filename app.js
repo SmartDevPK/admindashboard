@@ -1,11 +1,13 @@
 import dotenv from "dotenv";
 import express from "express";
 import connectDB from "./src/db/db.user.js";
+import cookieParser from "cookie-parser";
 import routeuse from "./src/routes/route.user.js"
 
 
 const app = express ();
 // Middleware for JSON and URL-encoded form data
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -1,10 +1,10 @@
+import { name } from "ejs";
 import mongoose from "mongoose";
 
 const ContentSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  description: { type: String, required: true },
-  image: { type: String, required: false }, // Store image URL
-  youtubeLink: { type: String, required: false },
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: false }, 
   createdAt: { type: Date, default: Date.now },
 });
 
