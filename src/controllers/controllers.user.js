@@ -109,13 +109,14 @@ const loginUser = async (req, res) => {
     }
 };
 
-// const forgetPasswordReset = async (req, res) => {
-//     try {
-//     return res.status(200).render("auth/forgetpassword")
-//     } catch (error) {
-        
-//     }
-// }
+const forgetPassword = async (req, res) => {
+    try {
+    return res.status(200).render("auth/forgetPassword")
+    console.error("Errors rendering the forgeting page", errors)
+    } catch (error) {
+    throw new ApiError(500, "Something went wrong while rendering the forgetPage page");
+    }
+}
 
 // ---------- Export Functions ---------- //
-export { renderHomePage, handleSignup, loginPage, loginUser };
+export { renderHomePage, handleSignup, loginPage, loginUser, forgetPassword };
